@@ -5,23 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PlofileController extends Controller
+class ProfileController extends Controller
 {
     //
     public function add()
     {
-        return view('admin.plofile.create');
+        return view('admin.profile.create');
     }
     public function create(Request $request)
     {
-        return redirect('admin/plofile');
+        return redirect('admin/profile');
     }
-    public function edit($id)
+    public function edit(Request $request)
     {
-        return view ('admin.plofile.edit');
+        return view ('admin.profile.edit');
     }
     public function update(Request $request, $id)
     {
-        return redirect('admin/plofile');
+        return redirect('admin/profile');
     }
 }
