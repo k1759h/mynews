@@ -22,7 +22,7 @@
             
             <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
                 <div class="container">
-                    <a class="navbar-bland" href="{{ url('/' }}">
+                    <a class="navbar-bland" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel')}}
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" 
