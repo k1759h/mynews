@@ -21,10 +21,10 @@ Route::prefix('admin')->group(function () {
 Route::middleware(['auth'])->group(function() {
   Route::get('/admin/profile/create' ,[ProfileController::class,'create'])->name('admin.profile.create');
   Route::get('/admin/profile/edit' ,[ProfileController::class,'edit'])->name('admin.profile.edit');
+  
+  Route::post('admin/profile/create',[ProfileController::class, 'create']);
+  Route::post('admin/profile/edit',[ProfileController::class, 'update']);
 });
-
-Route::post('admin/profile/create',[ProfileController::class, 'create']);
-Route::post('admin/profile/edit',[ProfileController::class, 'update']);
 
 Auth::routes();
 

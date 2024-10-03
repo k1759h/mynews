@@ -17,6 +17,18 @@
           <div class="row">
              <div class="col-md-8 mx-auto">
                 <h2>プロフィール新規作成</h2>
+                
+                @if ($errors->any())
+                 <div class="alert alert-danger">
+                   <ul>
+                     @foreach ($errors->all() as $error)
+                       <li>{{ $error }}</li>
+                     @endforeach
+                   </ul>
+                  </div>
+                @endif
+
+                
                 <form action="{{ action('Admin/ProfileController@create') }}" method="post">
                     @csrf
                     <div class="form-group">
@@ -32,7 +44,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="hobby"z>趣味</label>
+                        <label for="hobby">趣味</label>
                         <input type="text" class="form-control" name="hobby" varue="{{ old('hobby') }}">
                     </div>
                     <div class="form-group">
