@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('gender');
             $table->string('hobby');
-            $table->textarea('introduction')->nullable();
+            $table->string('introduction')->nullable();
             $table->timestamps();
         });
     }

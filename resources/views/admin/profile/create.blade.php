@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="view-port" content="width=device-width,initial-scale=1">
-        
-        <title>Create Profile</title>
-        @section('title' 'プロフィール新規作成')
-        @endsection
-    </head>
-    <body>
-        <h1>プロフィール作成ページ</h1>
+    @extends('layouts.admin')
+    @section('title','プロフィール新規作成')
+    
         
     @section('content')
         <div class="container">
@@ -29,7 +19,7 @@
                 @endif
 
                 
-                <form action="{{ action('Admin/ProfileController@create') }}" method="post">
+                <form action="{{ action([App\Http\Controllers\Admin\ProfileController::class, 'create']) }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="name">氏名</label>

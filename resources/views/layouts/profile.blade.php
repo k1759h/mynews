@@ -1,65 +1,78 @@
-@extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        <title>@yield('title')</title>
+        
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        
+        <link rel="dns-prefecth" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600"
+        rel="stylesheet" type="text/css">
+        
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/profile.css') }}" rel="stylesheet">
+        
 
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="login-box card text-white">
-                    <div class="login-header card-header mx-auto">{{ __('messages.login') }}</div>
+    </head>
+    <body>
+        <div id="app">
+            
+            <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
+                <div class="container">
+                    <a class="navbar-bland" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel')}}
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target="#navberSupportedContent" aria-controls="navberSupportedContent" 
+                        aria-expaded="false" aria-label-"Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navberSupportedContent>"
+                            
+                            <ul class="navbar-nav ms-auto">
+                                
+        
+                            </ul>
+                            
+                            
+                            <ul class="navbar-nav">
+                                @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a></li>
+                             @else
+                            <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                 </a>
 
-                    <div class="login-body card-body">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('messages.logout') }}
+                                    </a>
 
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('messages.email') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('messages.password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('messages.remember_me') }}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('messages.login') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+                            </li>
+                            @endguest
+                            </ul>
+                        </div>
+                 </div>
+            </nav>
+            
+            
+            <main class="py-4">
+                
+                
+                @yield('content')
+            </main>
+         </div>                   
+    </body>
+</html>
