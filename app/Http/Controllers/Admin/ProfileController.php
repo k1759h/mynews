@@ -29,7 +29,7 @@ class ProfileController extends Controller
     $profile->fill($form);
     $profile->save();
 
-    return redirect('admin/profile/create');
+    return redirect('admin/profile/create')->with('status', 'プロフィールが作成されました！');
 }
 
     public function edit(Request $request)

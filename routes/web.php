@@ -13,11 +13,11 @@ Route::controller(NewsController::class)->prefix('admin')->name('admin.')->middl
 
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/admin/profile/create', [ProfileController::class, 'add'])->name('admin.profile.create'); // フォームを表示する
-    Route::post('/admin/profile/create', [ProfileController::class, 'create']); // データを保存する
+    Route::get('/admin/profile/create', [ProfileController::class, 'add'])->name('admin.profile.create'); 
+    Route::post('/admin/profile/create', [ProfileController::class, 'create']); 
     
-    Route::get('/admin/profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit'); // 編集フォームを表示する
-    Route::post('/admin/profile/edit', [ProfileController::class, 'update']); // データを更新する
+    Route::get('/admin/profile/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit'); 
+    Route::post('/admin/profile/edit', [ProfileController::class, 'update']); 
 });
 
 
