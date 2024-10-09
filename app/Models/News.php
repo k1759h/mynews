@@ -9,7 +9,9 @@ class News extends Model
 {
     use HasFactory;
     
-    protected $guarded = array(
+    protected $guarded = array('id');
+    
+    public static $rules = array(
         'title' => 'required',
         'body' => 'required',
         );

@@ -29,15 +29,24 @@ class ProfileController extends Controller
     $profile->fill($form);
     $profile->save();
 
-    return redirect('admin/profile/create')->with('status', 'プロフィールが作成されました！');
+
+    return redirect('admin/profile/create');
 }
 
     public function edit(Request $request)
     {
-        return view ('admin.profile.edit');
+        $profile = Profile::find($request->id);
+        
+        if (empty($profile)) {
+        abort(404);
+        }
+        
+        return view ('admin.profile.edit', ['profile_form' => $profile]);
     }
     public function update(Request $request, $id)
     {
-        return redirect('admin/profile');
+        $profile = Profile::find($id);
+        
+        return redirect()->route('admin.profile.edit');
     }
 }
