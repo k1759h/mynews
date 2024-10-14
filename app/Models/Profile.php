@@ -16,4 +16,10 @@ class Profile extends Model
         'introduction' => 'nullable|string|max:500',
         ];
      protected $fillable = ['name', 'gender', 'hobby', 'introduction'];
+     
+    public function histories()
+  {
+    return $this->hasMany(ProfileHistory::class);
+  }
+
 }

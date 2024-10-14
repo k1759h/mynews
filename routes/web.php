@@ -18,7 +18,8 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/admin/profile/create', [ProfileController::class, 'create']); 
     
     Route::get('/admin/profile/edit/', [ProfileController::class, 'edit'])->name('admin.profile.edit'); 
-    Route::post('/admin/profile/update/', [ProfileController::class, 'update'])->name('admin.profile.update'); 
+    Route::post('/admin/profile/update/', [ProfileController::class, 'update'])->name('admin.profile.update');
+    
 });
 
 
