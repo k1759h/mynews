@@ -14,13 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profile_histories', function (Blueprint $table) {
-          if (!Schema::hasTable('profile_histories')) {
             $table->id();
-            $table->bigInteger('profile_id');
+            $table->foreignId('profile_id')->constrained()->onDelete('cascade');
+            $table->string('name')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('hobby')->nullable();
+            $table->text('introduction')->nullable();
             $table->string('edited_at');
             $table->timestamps();
-            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
-          }
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
         });
     }
 

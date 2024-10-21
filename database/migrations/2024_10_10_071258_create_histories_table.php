@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('edited_at');
             $table->timestamps();
         });
+
     }
 
     /**

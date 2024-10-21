@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\ProfileHistory;
 use Carbon\Carbon;
 
 class ProfileController extends Controller
@@ -44,9 +45,9 @@ class ProfileController extends Controller
         
         return view ('admin.profile.edit', ['profile_form' => $profile]);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $profile = Profile::find($id);
+        $profile = Profile::find($request->id);
         
         $form = $request->all();
         
