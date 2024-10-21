@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\NewsController as PublicNewsController;
 use App\Http\Controllers\Admin\ProfileController;
 
 
@@ -11,7 +12,11 @@ Route::controller(NewsController::class)->prefix('admin')->name('admin.')->middl
     Route::get('news/edit','edit')->name('news.edit');
     Route::post('news/edit','update')->name('news.update');
     Route::get('news/delete','delete')->name('news.delete');
+    
 });
+
+Route::get('/', [PublicNewsController::class, 'index'])->name('news.index');
+
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin/profile/create', [ProfileController::class, 'add'])->name('admin.profile.create'); 
@@ -19,8 +24,12 @@ Route::middleware(['auth'])->group(function() {
     
     Route::get('/admin/profile/edit/', [ProfileController::class, 'edit'])->name('admin.profile.edit'); 
     Route::post('/admin/profile/update/', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+
     
 });
+
+Route::get('/profile', [ProfileController::class, 'index']);
 
 
 Auth::routes();

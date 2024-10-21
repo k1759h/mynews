@@ -66,4 +66,10 @@ class ProfileController extends Controller
         
         return redirect()->route('admin.profile.edit');
     }
+    public function index()
+    {
+        $profiles = Profile::all();
+        
+        return view ('admin.profile.index', ['profiles' => $profiles]);
+    }
 }
